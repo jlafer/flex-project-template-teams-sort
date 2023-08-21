@@ -185,3 +185,5 @@ terraform.rc
 # Ignore local env(s), allowing only the example env
 .env.*
 !.env.example
+
+notes.txt

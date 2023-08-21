@@ -14,6 +14,7 @@ import * as PasteElements from './paste-elements';
 import * as Reducers from './reducers';
 import * as Strings from './strings';
 import * as TeamsFilters from './teams-filters';
+import * as DefaultProps from './default-props';
 import * as SyncClientTokenUpdated from '../sdk-clients/sync/tokenUpdated';
 import * as TaskRouterReplaceCompleteTask from '../serverless/TaskRouter/CompleteTask';
 // @ts-ignore
@@ -120,6 +121,10 @@ export const loadFeature = (flex: typeof Flex, manager: Flex.Manager, feature: F
 
     if (hook.teamsFilterHook) {
       TeamsFilters.addHook(flex, manager, name, hook);
+    }
+
+    if (hook.defaultPropsHook) {
+      DefaultProps.addHook(flex, manager, name, hook);
     }
   }
 };
