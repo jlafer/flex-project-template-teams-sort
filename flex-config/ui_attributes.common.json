@@ -264,7 +264,8 @@
         }
       },
       "teams_view_sort": {
-        "enabled": false
+        "enabled": false,
+        "sort-by": "Last"
       }
     }
   }
