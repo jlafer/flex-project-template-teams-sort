@@ -23,7 +23,6 @@ export const defaultPropsHook = function workersDataTableSortWorkers(workerState
 
   const ascending = isAscending();
   const sortBy = getSortBy();
-  console.log(`sortBy ${sortBy}`);
   let prop;
   switch (sortBy) {
     case 'Activity':
