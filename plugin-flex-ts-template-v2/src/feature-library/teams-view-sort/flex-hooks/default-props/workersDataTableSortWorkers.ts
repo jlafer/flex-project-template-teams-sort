@@ -2,7 +2,7 @@ import * as Flex from '@twilio/flex-ui';
 import { SupervisorWorkerState } from '@twilio/flex-ui/src/state/State.definition';
 
 import { FlexComponent } from '../../../../types/feature-loader';
-import { getSortBy } from '../../config';
+import { getSortBy, isAscending } from '../../config';
 
 export const componentName = FlexComponent.WorkersDataTable;
 export const propName = 'sortWorkers';
@@ -20,9 +20,9 @@ export const defaultPropsHook = function workersDataTableSortWorkers(workerState
   const { worker: workerA } = workerStateA;
   const { worker: workerB } = workerStateB;
 
-  let isAscending = false;
-  let prop;
+  const ascending = isAscending();
   const sortBy = getSortBy();
+  let prop;
   switch (sortBy) {
     case 'Email':
       prop = useEmail;
@@ -39,7 +39,8 @@ export const defaultPropsHook = function workersDataTableSortWorkers(workerState
   }
   const workerAValue = prop(workerA) || "";
   const workerBValue = prop(workerB) || "";
-  return isAscending
-    ? workerAValue.toLowerCase().localeCompare(workerBValue.toLowerCase())
-    : workerBValue.toLowerCase().localeCompare(workerAValue.toLowerCase());
+  const order = ascending
+    ? workerBValue.toLowerCase().localeCompare(workerAValue.toLowerCase())
+    : workerAValue.toLowerCase().localeCompare(workerBValue.toLowerCase());
+  return order;
 }

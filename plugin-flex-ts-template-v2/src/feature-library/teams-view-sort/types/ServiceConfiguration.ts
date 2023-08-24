@@ -1,6 +1,9 @@
-export type SortByFieldName = 'First' | 'Last' | 'Email' | 'Username';
+export const sortByFields = ['First', 'Last', 'Email', 'Username'] as const;
+
+export type SortByField = typeof sortByFields[number];
 
 export default interface TeamsViewSortConfig {
   enabled: boolean;
-  sort_by: SortByFieldName
+  ascending: boolean;
+  sort_by: SortByField
 }
