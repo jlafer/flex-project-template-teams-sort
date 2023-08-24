@@ -15,6 +15,7 @@ const extractLastName = (worker: Flex.IWorker) => {
 }
 const useEmail = (worker: Flex.IWorker) => worker.attributes.email;
 const useName = (worker: Flex.IWorker) => worker.name;
+const useActivityName = (worker: Flex.IWorker) => worker.activityName;
 
 export const defaultPropsHook = function workersDataTableSortWorkers(workerStateA: SupervisorWorkerState, workerStateB: SupervisorWorkerState) {
   const { worker: workerA } = workerStateA;
@@ -24,6 +25,9 @@ export const defaultPropsHook = function workersDataTableSortWorkers(workerState
   const sortBy = getSortBy();
   let prop;
   switch (sortBy) {
+    case 'Activity':
+      prop = useActivityName;
+      break;
     case 'Email':
       prop = useEmail;
       break;

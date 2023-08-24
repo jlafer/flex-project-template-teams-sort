@@ -1,4 +1,4 @@
-export const sortByFields = ['First', 'Last', 'Email', 'Username'] as const;
+export const sortByFields = ['Activity', 'First', 'Last', 'Email', 'Username'] as const;
 
 export type SortByField = typeof sortByFields[number];
 

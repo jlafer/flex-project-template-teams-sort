@@ -24,7 +24,7 @@ This feature shows how to implement the custom sorting logic. It also allows the
 
 This feature can be enabled via the `flex-config` attributes. Just set the teams_view_sort `enabled` flag to `true`, set the `sortBy` field and choose whether an `ascending` (or descending) sort-order is desired.
 
-In setting the field for sorting the workers in the WorkersDataTable, you can choose from the following options: `First`, `Last`, `Username`, `Email`.
+In setting the field for sorting the workers in the WorkersDataTable, you can choose from the following options: `Activity`, `First`, `Last`, `Username`, `Email`.
 
 The final configuration might look like this:
 
