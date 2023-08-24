@@ -17,33 +17,23 @@ const useEmail = (worker: Flex.IWorker) => worker.attributes.email;
 const useName = (worker: Flex.IWorker) => worker.name;
 const useActivityName = (worker: Flex.IWorker) => worker.activityName;
 
+const sortByToFldGetter = {
+  Activity: useActivityName,
+  Email: useEmail,
+  First: useFullname,
+  Last: extractLastName,
+  Username: useName
+};
+
 export const defaultPropsHook = function workersDataTableSortWorkers(workerStateA: SupervisorWorkerState, workerStateB: SupervisorWorkerState) {
   const { worker: workerA } = workerStateA;
   const { worker: workerB } = workerStateB;
-
   const ascending = isAscending();
   const sortBy = getSortBy();
-  let prop;
-  switch (sortBy) {
-    case 'Activity':
-      prop = useActivityName;
-      break;
-    case 'Email':
-      prop = useEmail;
-      break;
-    case 'First':
-      prop = useFullname;
-      break;
-    case 'Username':
-      prop = useName;
-      break;
-    case 'Last':
-      prop = extractLastName;
-      break;
-  }
-  const workerAValue = prop(workerA) || "";
-  const workerBValue = prop(workerB) || "";
-  const order = ascending
+  const fldGetter = sortByToFldGetter[sortBy];
+  const workerAValue = fldGetter(workerA) || "";
+  const workerBValue = fldGetter(workerB) || "";
+  const order = (ascending)
     ? workerBValue.toLowerCase().localeCompare(workerAValue.toLowerCase())
     : workerAValue.toLowerCase().localeCompare(workerBValue.toLowerCase());
   return order;
